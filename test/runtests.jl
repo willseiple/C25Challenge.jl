@@ -11,9 +11,9 @@ DocMeta.setdocmeta!(C25Challenge, :DocTestSetup, :(using C25Challenge); recursiv
         Aqua.test_all(C25Challenge; ambiguities=false)
     end
 
-    # @testset verbose = true "Code formatting (C25Challenge.jl)" begin
-    #     @test format(C25Challenge; verbose=true, overwrite=true)
-    # end
+    @testset verbose = true "Code formatting (C25Challenge.jl)" begin
+        @test format(C25Challenge; verbose=true, overwrite=true)
+    end
 
     @testset verbose = true "Doctests (Documenter.jl)" begin
         doctest(C25Challenge)

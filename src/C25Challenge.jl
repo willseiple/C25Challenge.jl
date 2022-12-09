@@ -1,11 +1,13 @@
 module C25Challenge
 
+using Graphs
+using SimpleWeightedGraphs
 using HashCode2014
 
 # Write your package code here.
-export my_clever_function
-include("Structs.jl")
+export GraphFormat
+export graph_random_walk
 
-my_clever_function()
+include("Structs.jl")
 
 end
