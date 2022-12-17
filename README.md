@@ -12,7 +12,7 @@
 ```julia
 using C25Challenge
 problem = Problem()
-solution = series_solver(problem)
+solution = parallel_solver(problem)
 ```
 
 
