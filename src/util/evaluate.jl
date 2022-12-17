@@ -1,5 +1,5 @@
 """
-    feasible_check(solution, city[; verbose=false])
+    feasible_check(Solution)
 
 Check if `solution` satisfies the constraints of the problme statement
 The following criteria are considered:

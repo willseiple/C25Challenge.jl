@@ -5,4 +5,16 @@
 [![Build Status](https://github.com/willseiple/C25Challenge.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/willseiple/C25Challenge.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/willseiple/C25Challenge.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/willseiple/C25Challenge.jl)
 
+
+
+## Usage
+
+```julia
+using C25Challenge
+problem = Problem()
+solution = series_solver(problem)
+```
+
+
+
 Module for generating solutions to the HashCode 2014 Challenge as presented in MIT 18.S191

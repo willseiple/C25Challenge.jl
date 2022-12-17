@@ -26,9 +26,6 @@ struct StreetGraph
     StreetGraph(g::ValOutDiGraph, n::Integer, st::Integer, tT::Integer) = new(g, n, st, tT)
 end
 
-"""
-    Used to construct a StreetGraph, returns StreetGraph object
-"""
 function initStreetGraph(city::City)
     (; total_duration, starting_junction, nb_cars, streets, junctions) = city
 

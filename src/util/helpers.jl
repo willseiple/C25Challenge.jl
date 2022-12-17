@@ -1,4 +1,3 @@
-
 """
     bestStepLookahead(graph::StreetGraph, currentNode::Integer, depth=5)
 
@@ -19,10 +18,8 @@ function bestStepLookahead(graph::StreetGraph, currentNode::Integer, depth=5)
     bestStep = 0
 
     for (i, neighbor) in enumerate(outNeighbors)
-        # handles bidirectional case
         incrementNVisited!(graph, currentNode, neighbor)
         currentScore, _ = bestStepLookahead(graph, neighbor, depth - 1)
-        # reset graph to original state
         decrementNVisited!(graph, currentNode, neighbor)
         currentScore += calcValue(edgeVals[i])
 
@@ -38,9 +35,7 @@ end
 """
     outInformation(g::StreetGraph, node::Integer)
 
-Returns the information about the node. Specifically, the outedgevals, outneighbors, and max rate index
-    outvals, outneighbors, idx_max = outInformation(g::StreetGraph, node::Integer)
-
+Returns the information about the node, specifically: outedgevals, outneighbors, and max rate index    
 
 # Parameters
 - `streetGraph`: The graph format of the City
@@ -52,14 +47,6 @@ function outInformation(g::StreetGraph, node::Integer)
     return outvals, outneighbors(g.graph, node), idx_max
 end
 
-"""
-    calcValue(weight::EdgeWeight)
-
-Calculates a heuristic given an edge.
-
-# Parameters
-- `weight`: The EdgeWeight that you calculate the heuristic on
-"""
 function calcValue(weight::EdgeWeight)
     (; duration, rate, nvisited) = weight
     # value = nvisited == 0 ? rate : (0.3)^nvisited * rate
@@ -67,11 +54,6 @@ function calcValue(weight::EdgeWeight)
     return value
 end
 
-"""
-
-NEW UTILS !!! NEED TO DOCUMENT THESE
-
-"""
 function updateNVisited!(
     streetGraph::StreetGraph, from::Integer, to::Integer, newVal::Integer
 )
