@@ -18,13 +18,19 @@ DocMeta.setdocmeta!(C25Challenge, :DocTestSetup, :(using C25Challenge); recursiv
     @testset verbose = true "Doctests (Documenter.jl)" begin
         doctest(C25Challenge)
     end
-
-    #     @testset verbose = true "load StreetGraph " begin
-    #         city = read_city()
-    #         streetGraph = StreetGraph(city)
-
-    #         @test streetGraph.N == 8
-    #         @test streetGraph.start == 4517
-    #         @test streetGraph.totalTime == 54000
-    #     end
+    @testset verbose = true "series_solver" begin
+        solution = series_solver(Problem())
+        @test feasible_check(solution)
+        @test compute_distance(solution) > 0
+    end
+    @testset verbose = true "parallel_solver" begin
+        solution = parallel_solver(Problem())
+        @test feasible_check(solution)
+        @test compute_distance(solution) > 0
+    end
+    @testset verbose = true "random_solver" begin
+        solution = random_parallel_solver(Problem())
+        @test feasible_check(solution)
+        @test compute_distance(solution) > 0
+    end
 end
