@@ -13,7 +13,7 @@ Documentation for [C25Challenge](https://github.com/willseiple/C25Challenge.jl).
 ```julia
 using C25Challenge
 problem = Problem()
-solution = series_solver(problem)
+solution = parallel_solver(problem)
 ```
 
 ## Algorithm
@@ -34,6 +34,15 @@ We then upgraded our design by implementing a lookahead into a very similar algo
 ### Greedy Lookahead Approach in Parallel
 
 We tried a number of augmentations to the lookahead algorithm, including parallelizing (sort of) the progress of each of the cars. Instead of allowing the cars to traverse the graph all in one turn, we had the cars take one step on each turn. This algorithm has the same runtime as the previous series approach, but led to a slight improvement, as the cars gained more information about the actions of the other cars as time went on. We were able to reach a total distance of 1,852,994 at a depth of 8.
+
+### Greedy Lookahead Approach in Parallel with Random turns
+
+We made one last adjustment, randomizing the number of steps each car could make per turn, by setting a percent chance the car could go again. We hypothesized this would improve performance by allowing each of the cars’ plans to be carried out to a greater extent, as in the previous approach it is possible that the cars would look ahead without the knowledge that another car was closer and may take that path first. However this approach gave very similar results to the previous algorithm without randomness, and could possibly be improved with a more complex method for randomization, or possibly by increasing the number of trials of the entire search and selecting the best performing result in a monte carlo style simulation.
+
+### Other Considerations for Improvement
+
+Among other ideas we played with was a heuristic that would take into account the depth of the lookahead search instead of simply finding the path with the highest average uniform heuristic value. This would weight closer streets more heavily, as they have a higher likelihood of being reached before another car in a parallel approach. In practice this was challenging to tune, and seemed to negate the benefits of the lookahead, however it could be useful in conjunction with a more effective random parallel algorithm. One other idea we considered was to run a lookahead for each of the other cars, then use this graph to run a lookahead for the current car, in order to find paths that any specific car is uniquely positioned to take advantage of.
+
 
 ### Upper Bound
 
