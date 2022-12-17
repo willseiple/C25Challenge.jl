@@ -248,6 +248,12 @@ git-tree-sha1 = "5d7e3f4e11935503d3ecaf7186eac40602e7d231"
 uuid = "699a6c99-e7fa-54fc-8d76-47d257e15c1d"
 version = "0.9.4"
 
+[[SimpleValueGraphs]]
+deps = ["DataStructures", "Graphs", "LinearAlgebra", "Requires", "SimpleTraits", "SimpleWeightedGraphs", "SparseArrays", "Test"]
+git-tree-sha1 = "d50a14c8e88d228e614e3dbcdb5e2e0e9a494f04"
+uuid = "b43c691f-cac2-5415-8122-396fe16a49fc"
+version = "0.4.1"
+
 [[SimpleWeightedGraphs]]
 deps = ["Graphs", "LinearAlgebra", "Markdown", "SparseArrays", "Test"]
 git-tree-sha1 = "a6f404cc44d3d3b28c793ec0eb59af709d827e4e"

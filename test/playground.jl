@@ -1,3 +1,7 @@
 using C25Challenge
 
-C25Challenge.my_clever_function()
+solution = series_solver(Problem(), 5)
+solution = parallel_solver(Problem())
+
+compute_distance(solution)
+feasible_check(solution)

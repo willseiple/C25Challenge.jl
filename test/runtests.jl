@@ -19,7 +19,12 @@ DocMeta.setdocmeta!(C25Challenge, :DocTestSetup, :(using C25Challenge); recursiv
         doctest(C25Challenge)
     end
 
-    @testset verbose = true "My own tests" begin
-        @test 1 + 1 == 2
-    end
+    #     @testset verbose = true "load StreetGraph " begin
+    #         city = read_city()
+    #         streetGraph = StreetGraph(city)
+
+    #         @test streetGraph.N == 8
+    #         @test streetGraph.start == 4517
+    #         @test streetGraph.totalTime == 54000
+    #     end
 end
