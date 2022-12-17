@@ -19,18 +19,13 @@ solution = series_solver(problem)
 ## Algorithm
 
 
-We have 3 different approaches.
-
 ### Greedy Approach
 
-For our initial implementation, we started with a naive greedy algorithm optimizing for a heuristic representing rate of score accrual. 
+For our initial implementation, we created a naive greedy algorithm maximizing a heuristic representing rate of score accrual. 
 
-This heuristic works as follows: if a certain edge has not been visited, its value is distance / duration (speed limit), otherwise we multiply this value by k^(number of times visited) (we chose a value of 0.3 for k).
-
-We initially made visited edges worth 0, but found that this is not very useful in the case where all immediate edges have been visited, and it is reasonable to choose the road least traveled (or one with over 1/k times that road's speed limit, which may propel the car into a different part of the city).
+This heuristic works as follows: if a certain edge has not been visited, its value is distance / duration (speed limit), otherwise we multiply this value by k^(number of times visited) (we chose a value of 0.3 for k). We initially made visited edges worth 0, but found that this is not very useful in the case where all immediate edges have been visited, and it is reasonable to choose the road least traveled (or one with over 1/k times that road's speed limit, which may propel the car into a different part of the city).
 
 For each car, we calculate its entire path by selecting the edge that maximizes our heuristic. We then increment the number of times that edge has been visited and repeat. This algorithm runs in O(cE) time, where c is the number of cars and E is the average number of roads taken for any car (total time allowed / average time per road), so with 8 cars O(E). This resulted in fairly mediocre results, with cars failing to explore many regions of the city, but was extremely fast.
-
 
 ### Greedy Lookahead Approach in Series
 
@@ -38,7 +33,11 @@ We then upgraded our design by implementing a lookahead into a very similar algo
 
 ### Greedy Lookahead Approach in Parallel
 
-We tried a number of augmentations to the lookahead algorithm, including parallelizing (sort of) the progress of each of the cars. Instead of allowing the cars to traverse the graph all in one turn, we had the cars one step on each turn. This algorithm has the same runtime as the previous series approach, but led to a slight improvement, as the cars gained more information about the actions of the other cars as time went on. We were able to reach a total distance of 1,852,994 at a depth of 8.
+We tried a number of augmentations to the lookahead algorithm, including parallelizing (sort of) the progress of each of the cars. Instead of allowing the cars to traverse the graph all in one turn, we had the cars take one step on each turn. This algorithm has the same runtime as the previous series approach, but led to a slight improvement, as the cars gained more information about the actions of the other cars as time went on. We were able to reach a total distance of 1,852,994 at a depth of 8.
+
+### Upper Bound
+
+When considering the upper bound, we came up with the following algorithm. We order the streets primarily by rate of travel (fastest first), and secondarily by distance (shortest first). We then select them one at a time, keeping track of the total duration and the duration of the streets in the current iteration, until the next edge would result in going over the time limit. We do this 8 times in total to see the maximum distance achievable if each car were always traveling on the current fastest untravelled, shortest street. We would like to always travel on the shortest street of a given speed limit, as this increases the likelihood that it is traversed when time is an issue, maximizing the overall distance of the feasible solution.
 
 
 ## Index
