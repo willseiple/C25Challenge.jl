@@ -18,19 +18,23 @@ DocMeta.setdocmeta!(C25Challenge, :DocTestSetup, :(using C25Challenge); recursiv
     @testset verbose = true "Doctests (Documenter.jl)" begin
         doctest(C25Challenge)
     end
+
     @testset verbose = true "series_solver" begin
         solution = series_solver(Problem())
-        @test feasible_check(solution)
-        @test compute_distance(solution) > 0
+        city = read_city()
+        @test feasible_check(solution) == is_feasible(solution, city)
+        @test compute_distance(solution) == total_distance(solution, city)
     end
     @testset verbose = true "parallel_solver" begin
         solution = parallel_solver(Problem())
-        @test feasible_check(solution)
-        @test compute_distance(solution) > 0
+        city = read_city()
+        @test feasible_check(solution) == is_feasible(solution, city)
+        @test compute_distance(solution) == total_distance(solution, city)
     end
     @testset verbose = true "random_solver" begin
         solution = random_parallel_solver(Problem())
-        @test feasible_check(solution)
-        @test compute_distance(solution) > 0
+        city = read_city()
+        @test feasible_check(solution) == is_feasible(solution, city)
+        @test compute_distance(solution) == total_distance(solution, city)
     end
 end
